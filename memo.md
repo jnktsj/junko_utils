@@ -1,4 +1,17 @@
-# Downloading TCGA datasets
+## Downgrading VCF 4.2 to 4.1
+
+There is a thorough way to downgrade the version with bcftools,
+as shown in [this github code](https://gist.github.com/danielecook/f1d80babd7d601a74981).
+However you can downgrade fairly simply with a sed command:
+
+```
+sed -e 's/^##fileformat=VCFv4.2/##fileformat=VCFv4.1/; s/Number=R,/Number=.,/g' $input_vcf | bgzip -c > $output_vcf
+
+# makde an index
+tabix -p vcf $output_vcf
+```
+
+## Downloading TCGA datasets
 
 [`gdc-client`](https://gdc.cancer.gov/access-data/gdc-data-transfer-tool)
 only works on Mac OSX, Windows, and Ubuntu. It will be such a hassle
