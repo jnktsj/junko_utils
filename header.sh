@@ -1,2 +1,2 @@
 #!/bin/bash
-head -n1 $1 | tr "\t" "\n" | awk '{print NR"\t"$0}'
+grep -v "#" $1 | head -n1 | tr "\t" "\n" | awk '{print NR"\t"$0}'
